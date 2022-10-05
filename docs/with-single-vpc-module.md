@@ -1,5 +1,7 @@
 # ACG Module with single VPC Module
 
+### **This module is deprecated. ACG management is integrated into `access_control_group` inside the `VPC module`.**
+
 This document describes the Terraform module that creates `Ncloud Access Control Groups`.
 If you want to use `ACG module` with [single VPC Module](https://github.com/terraform-ncloud-modules/terraform-ncloud-vpc/blob/master/docs/single-vpc.md), please refer to this article.
 

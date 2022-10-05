@@ -1,5 +1,7 @@
 # ACG Module with multiple VPC Module
 
+### **This module is deprecated. ACG management is integrated into `access_control_group` inside the `VPC module`.**
+
 This document describes the Terraform module that creates `Ncloud Access Control Groups`.
 If you want to use `ACG module` with [multiple VPC Module](https://github.com/terraform-ncloud-modules/terraform-ncloud-vpc/blob/master/docs/multiple-vpc.md), please refer to this article.
 
@@ -96,8 +98,8 @@ Map your (`ACG variable name` & `VPC module name`) to (`local ACG variable` & `l
 
 ``` hcl
 locals {
-  acgs = var.access_control_groups
-  vpcs = module.vpcs
+  acgs     = var.access_control_groups
+  acg_vpcs = module.vpcs
 }
 ```
 
@@ -107,6 +109,6 @@ Then just copy and paste the module declaration below.
 module "access_control_groups" {
   source = "terraform-ncloud-modules/acg/ncloud"
 
-  access_control_groups = [for acg in local.acgs : merge(acg, { vpc_id = local.vpcs[acg.vpc_name].vpc.id })]
+  access_control_groups = [for acg in local.acgs : merge(acg, { vpc_id = local.acg_vpcs[acg.vpc_name].vpc.id })]
 }
 ```
